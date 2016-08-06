@@ -20,7 +20,8 @@ mongoose.connect(connection_string);
 var Bookmark = mongoose.model('Bookmark', new mongoose.Schema({
   name: String,
   url: String,
-  tags: String
+  tags: String,
+  title: String,
 }));
 
 var Tag = mongoose.model('Tag', new mongoose.Schema({
@@ -41,8 +42,13 @@ var port = process.env.PORT || 8080;
 
 var router = express.Router();
 
+
 // middleware to use for all requests
 router.use(function(req, res, next) {
+  // CORS
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,PUT,DELETE");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   // do logging
   console.log('Something is happening.');
   next(); // make sure we go to the next routes and don't stop here
@@ -67,8 +73,20 @@ function saveBookmark (req, res, title) {
       res.send(err);
     }
     res.json({
-      message: 'Bookmark created!'
+      message: 'Bookmark "' + bookmark.title + '" created!'
     });
+  });
+}
+
+function parseObj (obj) {
+  var newObj = JSON.parse(JSON.stringify(obj));
+  newObj.id = obj._id;
+  return newObj;
+}
+
+function parseObjs (objs) {
+  return objs.map(function(obj) {
+    return parseObj(obj);
   });
 }
 
@@ -96,7 +114,7 @@ router.route('/bookmarks')
       if (err) {
         res.send(err);
       }
-      res.json(bookmarks);
+      res.json(parseObjs(bookmarks));
     });
   });
 
@@ -107,7 +125,7 @@ router.route('/bookmarks/:id')
       if (err) {
         res.send(err);
       }
-      res.json(bookmark);
+      res.json(parseObj(bookmark));
     });
   })
   // update by id (accessed at PUT http://localhost:8080/api/bookmarks/:id)
@@ -169,7 +187,7 @@ router.route('/bookmarks/:id')
         if (err) {
           res.send(err);
         }
-        res.json(tags);
+        res.json(parseObjs(tags));
       });
     });
 
