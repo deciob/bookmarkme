@@ -1,0 +1,24 @@
+html {
+  font-size: 62.5%; /* 62.5% of 16px = 10px */
+}
+
+body {
+  font-size: 1.4rem; /* =14px */
+}
+
+.main {
+  margin: 1rem;
+}
+
+.label {
+  color: #555;
+}
+
+input {
+  margin-left: 1rem;
+}
+
+pre {
+  margin-top: 0.5rem;
+  color: #aaa;
+}

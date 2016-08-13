@@ -1,6 +1,8 @@
 'use strict';
 
-require('font-awesome/css/font-awesome.css');
+//require('font-awesome/css/font-awesome.css');
+require('../node_modules/normalize.css/normalize.css')
+require('../css/main.css');
 
 // Require index.html so it gets copied to dist
 require('./index.html');

@@ -9,15 +9,18 @@ type alias Bookmark =
     { id : BookmarkId
     , title : Maybe String
     , url : String
-    , tags : String
+    , tags : Maybe String
     }
 
 
+
 -- Tmp
+
+
 new : Bookmark
 new =
     { id = "0"
     , title = Just "Placeholder"
     , url = "www.xxx"
-    , tags = ""
+    , tags = Nothing
     }

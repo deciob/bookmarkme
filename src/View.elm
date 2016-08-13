@@ -1,6 +1,7 @@
 module View exposing (..)
 
 import Html exposing (Html, div, text)
+import Html.Attributes exposing (..)
 import Html.App
 import Messages exposing (Msg(..))
 import Model exposing (Model)
@@ -13,7 +14,7 @@ import List
 
 view : Model -> Html Msg
 view model =
-    div []
+    div [ class "main" ]
         [ page model
         ]
 
@@ -33,7 +34,7 @@ page model =
 
 bookmarks : Model -> Html Msg
 bookmarks model =
-    Html.App.map BookmarksMsg (Bookmarks.List.view model.bookmarks)
+    Html.App.map BookmarksMsg <| Bookmarks.List.view model.bookmarks
 
 
 bookmarkEditPage : Model -> BookmarkId -> Html Msg
@@ -46,7 +47,7 @@ bookmarkEditPage model bookmarkId =
     in
         case maybeBookmark of
             Just bookmark ->
-                Html.App.map BookmarksMsg (Bookmarks.Edit.view bookmark)
+                Html.App.map BookmarksMsg <| Bookmarks.Edit.view bookmark
 
             Nothing ->
                 notFoundView

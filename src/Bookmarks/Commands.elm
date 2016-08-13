@@ -24,7 +24,7 @@ memberDecoder =
         ("id" := Decode.string)
         (Decode.maybe ("title" := Decode.string))
         ("url" := Decode.string)
-        ("tags" := Decode.string)
+        (Decode.maybe ("tags" := Decode.string))
 
 
 url : String

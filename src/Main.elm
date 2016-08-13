@@ -24,7 +24,7 @@ urlUpdate result model =
     let
         currentRoute =
             Routing.routeFromResult result
-        _ = Debug.log "currentRoute" (currentRoute)
+        _ = Debug.log "currentRoute" (result, currentRoute)
     in
         ( { model | route = currentRoute }, Cmd.none )
 

@@ -1,4 +1,4 @@
-module Helpers exposing (getTitle)
+module Helpers exposing (..)
 
 import Bookmarks.Model exposing (..)
 
@@ -11,3 +11,13 @@ getTitle bookmark =
 
         Just title ->
             title
+
+
+getTags : Bookmark -> String
+getTags bookmark =
+    case bookmark.tags of
+        Nothing ->
+            "No tags"
+
+        Just tags ->
+            tags

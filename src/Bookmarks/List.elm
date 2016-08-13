@@ -24,6 +24,7 @@ list bookmarks =
 
 bookmarkRow : Bookmark -> Html Msg
 bookmarkRow bookmark =
-    li [] [ a [ href ("./#bookmarks/" ++ bookmark.id) ] [ text "Edit" ]
-          , text (" - " ++ (Helpers.getTitle bookmark))
-          ]
+    li []
+        [ a [ href ("./#bookmarks/" ++ bookmark.id) ] [ text "Edit" ]
+        , text (" - " ++ (Helpers.getTitle bookmark))
+        ]
