@@ -10,6 +10,7 @@ import Http
 type Msg
     = ChangeTitle BookmarkId String
     | ChangeTags BookmarkId String
+    | Save BookmarkId
     | SaveSucceded Bookmark
     | SaveFailed Http.Error
     | FetchAllSucceded (List Bookmark)
